@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js Learning</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app" >
+      <h1>Checkout my <a :href="githubURL"> github </a></h1>
+      <div v-if="loggedIn">
+        <h1>Hello, {{user.name}}</h1>
+        <div v-show="showBooks">
+          <h2>Books recommended for people aged {{user.age}}</h2>
+          <br />
+          <ul>
+            <li  @click="setFav(book)" v-for="book in books" :class="{fav: book.isFav} ">
+              <h3>{{book.title}} By {{book.author}} at {{book.age}}</h3>
+              <img :src="bookCoverURI + book.cover" :alt="book.title" />
+
+            </li>
+          </ul>
+          <br />
+          <button disabled @click="changeBook('test','test',420)">Change Book</button>
+        </div>
+        <button @click="toggleBooks">Toggle Books</button>
+
+        <button @click="login">{{loginText}}</button>
+      </div>
+      <div v-else>
+        <h1>Not logged in</h1>
+        <button @click="login">{{loginText}}</button>
+      </div>
+
+      <br />
+
+      <div class="box" @mouseover="handleEvent">Hover Effect</div>
+      <div class="box" @mouseleave="handleEvent">Enter and leave</div>
+      <div class="box" @dblclick="handleEvent">double click</div>
+      <div class="box" @mousemove="handleMove">
+        current position = x : {{ x }}, y {{ y }}
+      </div>
+      <button @click="printDifference">Click me</button>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
